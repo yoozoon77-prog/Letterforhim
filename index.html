@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+
+<html lang="ko">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>to. 오빠</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo&display=swap" rel="stylesheet">
+
+<style>
+
+body{
+
+  margin:0;
+
+  background:#f7efe5;
+
+  font-family:'Nanum Myeongjo', serif;
+
+  overflow:hidden;
+
+}
+
+/* 인트로 */
+
+.intro{
+
+  position:absolute;
+
+  width:100%;
+
+  height:100vh;
+
+  display:flex;
+
+  justify-content:center;
+
+  align-items:center;
+
+  background:#f2e4d7;
+
+  flex-direction:column;
+
+}
+
+.intro h1{
+
+  font-size:22px;
+
+  opacity:0;
+
+  animation:fadeIn 2s forwards;
+
+}
+
+.intro button{
+
+  margin-top:20px;
+
+  padding:10px 20px;
+
+  border:none;
+
+  background:#d6bfa9;
+
+  color:#fff;
+
+  border-radius:20px;
+
+  cursor:pointer;
+
+}
+
+/* 편지 */
+
+.letter{
+
+  display:none;
+
+  width:100%;
+
+  height:100vh;
+
+  justify-content:center;
+
+  align-items:center;
+
+  background:#f7efe5;
+
+}
+
+.paper{
+
+  width:320px;
+
+  padding:25px;
+
+  background:#fffdf9;
+
+  box-shadow:0 0 20px rgba(0,0,0,0.1);
+
+  border-radius:10px;
+
+  line-height:1.8;
+
+  position:relative;
+
+}
+
+/* 커피 얼룩 느낌 */
+
+.paper::before{
+
+  content:'';
+
+  position:absolute;
+
+  width:120px;
+
+  height:120px;
+
+  background:radial-gradient(rgba(150,100,50,0.2), transparent);
+
+  top:-30px;
+
+  right:-30px;
+
+  border-radius:50%;
+
+}
+
+/* 약속 파트 */
+
+.promise{
+
+  margin-top:20px;
+
+  padding-top:15px;
+
+  border-top:1px solid #ddd;
+
+  font-size:14px;
+
+  color:#555;
+
+}
+
+@keyframes fadeIn{
+
+  to{opacity:1;}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<!-- 1페이지 (인트로) -->
+
+<div class="intro" id="intro">
+
+  <h1>오빠한테 전하고 싶은 말이 있어</h1>
+
+  <button onclick="showLetter()">열어보기</button>
+
+</div>
+
+<!-- 2페이지 (사과 편지) -->
+
+<div class="letter" id="letter1">
+
+  <div class="paper">
+
+    <p>
+
+    이걸로 내 마음이 전해질지는 모르겠지만  
+
+    오빠 생각하면서 만들어본 사이트야.<br><br>
+
+    먼저 오빠한테 진짜 미안하다는 말 먼저 하고 싶어.<br><br>
+
+    내가 그때 했던 말이 얼마나 상처될 수 있는지  
+
+    제대로 생각 못하고 말해버린 것 같아.<br><br>
+
+    오빠가 얼마나 힘들게 꺼낸 얘기인데  
+
+    그걸 내가 가볍게 꺼내버린게 너무 미안해.
+
+    </p>
+
+    <button onclick="nextPage()">다음</button>
+
+  </div>
+
+</div>
+
+<!-- 3페이지 (앞으로 행동) -->
+
+<div class="letter" id="letter2">
+
+  <div class="paper">
+
+    <p>
+
+    앞으로는 감정 올라와도 함부로 말하지 않을게.<br>
+
+    오빠 상황 먼저 생각하는 사람이 될게.<br><br>
+
+    그리고 내가 서운해지는 상황이 생기면  
+
+    그 상황을 의심하기보다  
+
+    내 감정부터 말하려고 할게.<br><br>
+
+    예를 들어  
+
+    “나 혼자 생각이 많아지면서 서운함이 쌓였던 것 같아”  
+
+    이런 식으로 말해볼게.<br><br>
+
+    그리고 내 감정만 말하는 게 아니라  
+
+    내가 원하는 것도 같이 말할게.<br><br>
+
+    마지막으로  
+
+    오빠의 가정사나, 약점이나, 털어놓은 얘기를  
+
+    싸울 때나 평소에 절대 꺼내지 않을게.<br><br>
+
+    참다가 터지지 않고  
+
+    부드럽게 얘기하려고 해볼게.
+
+    </p>
+
+  </div>
+
+</div>
+
+<script>
+
+function showLetter(){
+
+  document.getElementById('intro').style.display='none';
+
+  document.getElementById('letter1').style.display='flex';
+
+}
+
+function nextPage(){
+
+  document.getElementById('letter1').style.display='none';
+
+  document.getElementById('letter2').style.display='flex';
+
+}
+
+</script>
+
+</body>
+</html>
