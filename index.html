@@ -8,9 +8,11 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>to. 오빠</title>
+<title>우리 집 이야기</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo&display=swap" rel="stylesheet">
+<!-- 픽셀 감성 폰트 -->
+
+<link href="https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2107@1.1/DungGeunMo.css" rel="stylesheet">
 
 <style>
 
@@ -18,141 +20,55 @@ body{
 
   margin:0;
 
-  background:#f7efe5;
+  background:#fff3f6;
 
-  font-family:'Nanum Myeongjo', serif;
-
-  overflow:hidden;
-
-}
-
-/* 인트로 */
-
-.intro{
-
-  position:absolute;
-
-  width:100%;
-
-  height:100vh;
+  font-family:'DungGeunMo', monospace;
 
   display:flex;
 
-  justify-content:center;
+  flex-direction:column;
 
   align-items:center;
 
-  background:#f2e4d7;
-
-  flex-direction:column;
-
 }
 
-.intro h1{
+/* 캔버스 */
 
-  font-size:22px;
-
-  opacity:0;
-
-  animation:fadeIn 2s forwards;
-
-}
-
-.intro button{
-
-  margin-top:20px;
-
-  padding:10px 20px;
-
-  border:none;
-
-  background:#d6bfa9;
-
-  color:#fff;
-
-  border-radius:20px;
-
-  cursor:pointer;
-
-}
-
-/* 편지 */
-
-.letter{
-
-  display:none;
+canvas{
 
   width:100%;
 
-  height:100vh;
+  max-width:500px;
 
-  justify-content:center;
+  height:auto;
 
-  align-items:center;
+  background:#fdf6f0;
 
-  background:#f7efe5;
+  image-rendering: pixelated;
 
-}
-
-.paper{
-
-  width:320px;
-
-  padding:25px;
-
-  background:#fffdf9;
-
-  box-shadow:0 0 20px rgba(0,0,0,0.1);
-
-  border-radius:10px;
-
-  line-height:1.8;
-
-  position:relative;
+  border:3px solid #e8cfcf;
 
 }
 
-/* 커피 얼룩 느낌 */
+/* 텍스트 박스 */
 
-.paper::before{
+#textBox{
 
-  content:'';
+  width:100%;
 
-  position:absolute;
+  max-width:500px;
 
-  width:120px;
+  min-height:120px;
 
-  height:120px;
+  background:white;
 
-  background:radial-gradient(rgba(150,100,50,0.2), transparent);
+  padding:15px;
 
-  top:-30px;
+  border-top:3px solid #e8cfcf;
 
-  right:-30px;
+  box-sizing:border-box;
 
-  border-radius:50%;
-
-}
-
-/* 약속 파트 */
-
-.promise{
-
-  margin-top:20px;
-
-  padding-top:15px;
-
-  border-top:1px solid #ddd;
-
-  font-size:14px;
-
-  color:#555;
-
-}
-
-@keyframes fadeIn{
-
-  to{opacity:1;}
+  line-height:1.6;
 
 }
 
@@ -162,109 +78,230 @@ body{
 
 <body>
 
-<!-- 1페이지 (인트로) -->
+<canvas id="game"></canvas>
 
-<div class="intro" id="intro">
-
-  <h1>오빠한테 전하고 싶은 말이 있어</h1>
-
-  <button onclick="showLetter()">열어보기</button>
-
-</div>
-
-<!-- 2페이지 (사과 편지) -->
-
-<div class="letter" id="letter1">
-
-  <div class="paper">
-
-    <p>
-
-    이걸로 내 마음이 전해질지는 모르겠지만  
-
-    오빠 생각하면서 만들어본 사이트야.<br><br>
-
-    먼저 오빠한테 진짜 미안하다는 말 먼저 하고 싶어.<br><br>
-
-    내가 그때 했던 말이 얼마나 상처될 수 있는지  
-
-    제대로 생각 못하고 말해버린 것 같아.<br><br>
-
-    오빠가 얼마나 힘들게 꺼낸 얘기인데  
-
-    그걸 내가 가볍게 꺼내버린게 너무 미안해.
-
-    </p>
-
-    <button onclick="nextPage()">다음</button>
-
-  </div>
-
-</div>
-
-<!-- 3페이지 (앞으로 행동) -->
-
-<div class="letter" id="letter2">
-
-  <div class="paper">
-
-    <p>
-
-    앞으로는 감정 올라와도 함부로 말하지 않을게.<br>
-
-    오빠 상황 먼저 생각하는 사람이 될게.<br><br>
-
-    그리고 내가 서운해지는 상황이 생기면  
-
-    그 상황을 의심하기보다  
-
-    내 감정부터 말하려고 할게.<br><br>
-
-    예를 들어  
-
-    “나 혼자 생각이 많아지면서 서운함이 쌓였던 것 같아”  
-
-    이런 식으로 말해볼게.<br><br>
-
-    그리고 내 감정만 말하는 게 아니라  
-
-    내가 원하는 것도 같이 말할게.<br><br>
-
-    마지막으로  
-
-    오빠의 가정사나, 약점이나, 털어놓은 얘기를  
-
-    싸울 때나 평소에 절대 꺼내지 않을게.<br><br>
-
-    참다가 터지지 않고  
-
-    부드럽게 얘기하려고 해볼게.
-
-    </p>
-
-  </div>
-
-</div>
+<div id="textBox">화면을 터치해서 움직여봐 💗</div>
 
 <script>
 
-function showLetter(){
+const canvas = document.getElementById('game');
 
-  document.getElementById('intro').style.display='none';
+const ctx = canvas.getContext('2d');
 
-  document.getElementById('letter1').style.display='flex';
+canvas.width = 500;
+
+canvas.height = 300;
+
+/* =========================
+
+   캐릭터 설정
+
+   ========================= */
+
+let player = {
+
+  x: 250,
+
+  y: 150,
+
+  size: 20,
+
+  targetX: 250,
+
+  targetY: 150
+
+};
+
+/* =========================
+
+   오브젝트 (가구)
+
+   x,y 값 바꾸면 위치 변경 가능
+
+   ========================= */
+
+const objects = [
+
+  {name:'tv', x:50, y:50, w:40, h:30},
+
+  {name:'bed', x:380, y:60, w:50, h:30},
+
+  {name:'table', x:200, y:200, w:50, h:30},
+
+  {name:'bath', x:400, y:200, w:40, h:30}
+
+];
+
+/* =========================
+
+   추억 문구 (여기 수정하면 됨)
+
+   ========================= */
+
+const messages = {
+
+  tv: "우리 여기서 같이 공포영화 보다가 무서워서 불 다 켜고 잤었지?",
+
+  bed: "이 침대에서 진짜 많이 웃고 얘기했던 거 생각나",
+
+  table: "같이 밥 먹으면서 별 얘기 다 했던 거 좋았어",
+
+  bath: "별거 아닌 순간인데도 같이 있어서 좋았던 기억이야"
+
+};
+
+/* =========================
+
+   텍스트 타이핑 효과
+
+   ========================= */
+
+function typeText(text){
+
+  let i = 0;
+
+  const box = document.getElementById('textBox');
+
+  box.innerHTML = "";
+
+  const interval = setInterval(()=>{
+
+    box.innerHTML += text[i];
+
+    i++;
+
+    if(i >= text.length) clearInterval(interval);
+
+  }, 30);
 
 }
 
-function nextPage(){
+/* =========================
 
-  document.getElementById('letter1').style.display='none';
+   클릭 시 이동
 
-  document.getElementById('letter2').style.display='flex';
+   ========================= */
+
+canvas.addEventListener('click', (e)=>{
+
+  const rect = canvas.getBoundingClientRect();
+
+  player.targetX = (e.clientX - rect.left);
+
+  player.targetY = (e.clientY - rect.top);
+
+});
+
+/* =========================
+
+   이동 애니메이션
+
+   ========================= */
+
+function update(){
+
+  player.x += (player.targetX - player.x) * 0.1;
+
+  player.y += (player.targetY - player.y) * 0.1;
+
+  checkCollision();
 
 }
+
+/* =========================
+
+   충돌 체크 (가구 근처 가면 텍스트 출력)
+
+   ========================= */
+
+let lastObject = null;
+
+function checkCollision(){
+
+  objects.forEach(obj=>{
+
+    const dx = player.x - obj.x;
+
+    const dy = player.y - obj.y;
+
+    const dist = Math.sqrt(dx*dx + dy*dy);
+
+    if(dist < 40){
+
+      if(lastObject !== obj.name){
+
+        typeText(messages[obj.name]);
+
+        lastObject = obj.name;
+
+      }
+
+    }
+
+  });
+
+}
+
+/* =========================
+
+   그리기
+
+   ========================= */
+
+function draw(){
+
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+
+  /* 배경 (우리 집 바닥) */
+
+  ctx.fillStyle = "#f8e8e8";
+
+  ctx.fillRect(0,0,canvas.width,canvas.height);
+
+  /* 가구 그리기 (나중에 이미지로 교체 가능) */
+
+  objects.forEach(obj=>{
+
+    ctx.fillStyle = "#d4a5a5";
+
+    ctx.fillRect(obj.x, obj.y, obj.w, obj.h);
+
+    ctx.fillStyle = "#000";
+
+    ctx.font = "10px DungGeunMo";
+
+    ctx.fillText(obj.name, obj.x, obj.y - 5);
+
+  });
+
+  /* 캐릭터 (현재는 네모 → 이미지로 교체 가능) */
+
+  ctx.fillStyle = "#ff8fab";
+
+  ctx.fillRect(player.x - 10, player.y - 10, 20, 20);
+
+}
+
+/* =========================
+
+   게임 루프
+
+   ========================= */
+
+function loop(){
+
+  update();
+
+  draw();
+
+  requestAnimationFrame(loop);
+
+}
+
+loop();
 
 </script>
 
 </body>
+
 </html>
